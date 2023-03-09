@@ -407,7 +407,7 @@ class UserController extends Controller
                 ->join('users_orders', 'bol_data.bestelnummer', '=', 'users_orders.order_id')
                 ->where('users_orders.user_id', \Auth::id())
                 ->paginate(10);
-        return view('user.user_order_history', compact('user_bol_data'));
+        return view('user.user_order_list', compact('user_bol_data'));
     }
 
     public function userHistoryView($bestelnummer)
@@ -416,6 +416,6 @@ class UserController extends Controller
                 ->select('*')                
                 ->where('bestelnummer', $bestelnummer)
                 ->get();
-        return view('user.user_order_history_view', compact('user_bol_data'));
+        return view('user.user_order_detail', compact('user_bol_data'));
     }
 }
